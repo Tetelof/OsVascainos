@@ -8,8 +8,8 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import com.example.osvascainos.retrofit.Autenticacao
 import com.example.osvascainos.retrofit.Login
+import com.example.osvascainos.retrofit.LoginResponse
 import com.example.osvascainos.retrofit.UserX
 import retrofit2.Call
 import retrofit2.Callback
@@ -34,7 +34,7 @@ class LoginPage : AppCompatActivity() {
         buttonLogin.setOnClickListener{
             val login = txtLogin.text.toString()
             val senha = txtSenha.text.toString()
-            fazerLogin(login, senha, "dev")
+            fazerLogin(login, senha)
         }
 
     }
@@ -45,8 +45,8 @@ class LoginPage : AppCompatActivity() {
 
         val post = retrofit.createPost(login)
 
-        post.enqueue(object: Callback<Autenticacao> {
-            override fun onResponse(call: Call<Autenticacao>, response: Response<Autenticacao>) {
+        post.enqueue(object: Callback<LoginResponse> {
+            override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                 if(response.isSuccessful){
                     val intent = Intent(this@LoginPage, Home::class.java)
                     startActivity(intent)
@@ -54,8 +54,7 @@ class LoginPage : AppCompatActivity() {
                     Log.d("TAG", "onResponse: " + response.message())
                 }
             }
-
-            override fun onFailure(call: Call<Autenticacao>, t: Throwable) {
+            override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
                 Toast.makeText(baseContext, t.message, Toast.LENGTH_SHORT).show()
             }
         })
@@ -69,24 +68,19 @@ class LoginPage : AppCompatActivity() {
             val user = UserX(
                 name = "Meu nome",
                 email = "meuemail@alertrack.com.br",
-                avatar = "http://www.alertrack.com.br/api/teste_mobile/img/perfil_.png"
+                id = 0
             )
-            val autenticacao = Autenticacao(
+            val responseLogin = LoginResponse(
                 status = true,
-                message = "Autenticado com sucesso",
-                token = "9bdf52a4830779a1383ac24f1b3ed054",
-                user = user
             )
             val sharedPref = getSharedPreferences("LoggedIn", Context.MODE_PRIVATE)
             val prefEditor = sharedPref.edit()
             prefEditor.putString("login", login.login)
             prefEditor.putString("senha", login.senha)
             prefEditor.putBoolean("alreadyLogged", true)
-            prefEditor.putString("token",autenticacao.token)
             prefEditor.commit()
 
             val message_intent = Intent(this, Home::class.java)
-            intent.putExtra("token", autenticacao.token)
             finish()
             startActivity(message_intent)
         }else{

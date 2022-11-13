@@ -10,18 +10,34 @@ import retrofit2.http.POST
 
 interface RetrofitService {
     @POST("/api/login")
-    fun createPost(@Body login: Login) : Call<Autenticacao>
+    fun createPost(@Body login: Login) : Call<LoginResponse>
 
-    @POST("api/teste_mobile/chats.php")
-    fun createPost(@Body token: Token) : Call<ChatResposta>
+    @GET("api/temperatura-umidade")
+    fun getTempUmidity() : Call<DHT11Response>
 
-    @GET("api/teste_mobile/msgs.php?contact_id=1")
-    fun getMensagens() : Call<MsgResposta>
+    @GET("api/leitor-rfid")
+    fun getRfid() : Call<RFIDResponse>
+
+    @GET("api/sensor-infravermelho")
+    fun getSensorInfravermelho() : Call<InfraResponse>
+
+    @GET("api/sensor-gas")
+    fun getSensorGas() : Call<GasResponse>
+
+    @GET("api/sensor-voltagem")
+    fun getVoltagem() : Call<VoltagemResponse>
+
+    @GET("api/sensor-amperagem")
+    fun getAmperagem() : Call<AmperagemResponse>
+
+    @POST("api/cadastro/leitor-rfid")
+    fun registerRfid(@Body id: Int) : Call<RegisterRfidResponse>
+
 
     companion object{
         private val retrofitService : RetrofitService by lazy {
             val retrofit = Retrofit.Builder()
-                .baseUrl("http://alertrack.com.br/")
+                .baseUrl("http://192.168.15.157:6969/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
             retrofit.create(RetrofitService::class.java)

@@ -1,5 +1,5 @@
 package com.example.osvascainos.retrofit
 
-data class Token(
-    val token: String
+data class GasResponse(
+    val valor: Int
 )
