@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_temp">
+
+    <fragment
+        android:id="@+id/nav_temp"
+        android:name="com.example.osvascainos.ui.temp.TemperatureFragment"
+        android:label="Temperatura e Umidade"
+        tools:layout="@layout/fragment_temperature" />
+
+    <fragment
+        android:id="@+id/nav_gas"
+        android:name="com.example.osvascainos.ui.gas.GasFragment"
+        android:label="Sensor de Gás"
+        tools:layout="@layout/fragment_gas" />
+
+    <fragment
+        android:id="@+id/nav_potencia"
+        android:name="com.example.osvascainos.ui.potencia.PotenciaFragment"
+        android:label="Potência"
+        tools:layout="@layout/fragment_potencia" />
+    <fragment
+        android:id="@+id/nav_amperagem"
+        android:name="com.example.osvascainos.ui.amperagem.AmperagemFragment"
+        android:label="Sensor de Corrente"
+        tools:layout="@layout/fragment_amperagem" />
+
+    <fragment
+        android:id="@+id/nav_tensao"
+        android:name="com.example.osvascainos.ui.tensao.TensaoFragment"
+        android:label="Sensor de Tensão"
+        tools:layout="@layout/fragment_tensao" />
+
+    <fragment
+        android:id="@+id/nav_infrared"
+        android:name="com.example.osvascainos.ui.infrared.InfraredFragment"
+        android:label="Sensor Infravermelho"
+        tools:layout="@layout/fragment_infrared" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.osvascainos.ui.SettingsFragment"
+        android:label="SettingsFragment" />
+
+</navigation>

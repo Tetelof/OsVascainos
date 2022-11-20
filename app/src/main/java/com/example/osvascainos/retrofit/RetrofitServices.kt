@@ -1,5 +1,7 @@
-package com.example.osvascainos
+package com.example.osvascainos.retrofit
 
+import android.util.Log
+import androidx.preference.PreferenceManager
 import com.example.osvascainos.retrofit.*
 import retrofit2.Call
 import retrofit2.Retrofit
@@ -7,6 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Url
 
 interface RetrofitService {
     @POST("/api/login")
@@ -34,16 +37,22 @@ interface RetrofitService {
     fun registerRfid(@Body id: Int) : Call<RegisterRfidResponse>
 
 
-    companion object{
-        private val retrofitService : RetrofitService by lazy {
-            val retrofit = Retrofit.Builder()
-                .baseUrl("http://192.168.15.157:6969/")
+    companion object {
+        private var base_url: String = "http://192.168.3.157:6969"
+        private var retrofit: RetrofitService = Retrofit.Builder()
+            .baseUrl(base_url)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(RetrofitService::class.java)
+        fun getRetrofitInstance() : RetrofitService {
+            return retrofit
+        }
+        fun changeRetrofitBaseUrl(newUrl: String){
+            retrofit = Retrofit.Builder()
+                .baseUrl(newUrl)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
-            retrofit.create(RetrofitService::class.java)
-        }
-        fun getRetrofitInstance() : RetrofitService {
-            return retrofitService
+                .create(RetrofitService::class.java)
         }
     }
 }

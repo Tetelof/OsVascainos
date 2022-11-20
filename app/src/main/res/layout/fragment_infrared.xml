@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.infrared.InfraredFragment">
+    <TextView
+        android:id="@+id/currentUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CPD - 01"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_alignParentLeft="true"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"/>
+    <TextView
+        android:id="@+id/infrared_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Infravermelho:"
+        android:textSize="20sp"
+        android:layout_below="@+id/currentUser"
+        android:layout_marginLeft="10dp"/>
+    <TextView
+        android:id="@+id/infrared_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="123456789"
+        android:textSize="20sp"
+        android:layout_toRightOf="@+id/infrared_txt"
+        android:layout_below="@+id/currentUser"
+        android:layout_marginLeft="10dp"/>
+
+</RelativeLayout>

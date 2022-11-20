@@ -1,0 +1,13 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="Conexão">
+
+        <EditTextPreference
+            app:key="ip_rasp"
+            app:title="IP local da Raspberry PI"
+            app:defaultValue="http://127.0.0.1:6969"
+            app:useSimpleSummaryProvider="true" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
