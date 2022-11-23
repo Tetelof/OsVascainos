@@ -20,9 +20,9 @@ import kotlin.math.roundToInt
 class PotenciaFragment : Fragment() {
 
     private var _binding: FragmentPotenciaBinding? = null
-    private lateinit var potencia: TextView
     private var tensao: Int = 0
     private var amperagem: Float = 0f
+    private lateinit var potencia: TextView
 
 
     // This property is only valid between onCreateView and
@@ -39,8 +39,6 @@ class PotenciaFragment : Fragment() {
         val root: View = binding.root
 
         potencia = binding.potenciaValue
-        potencia.text = (tensao * amperagem).roundToInt().toString() + "Watts"
-        getAmps()
         getTension()
         return root
     }
@@ -58,12 +56,15 @@ class PotenciaFragment : Fragment() {
             override fun onResponse(call: Call<VoltagemResponse>, response: Response<VoltagemResponse>) {
                 if(response.isSuccessful){
                     tensao = response.body()!!.valor
+                    getAmps()
                 }else {
                     Log.d("TAG", "onResponse: " + response.message())
+                    tensao = 10
                 }
             }
             override fun onFailure(call: Call<VoltagemResponse>, t: Throwable) {
                 Toast.makeText(context, t.message, Toast.LENGTH_SHORT).show()
+                potencia.text = "err"
             }
         })
     }
@@ -75,12 +76,15 @@ class PotenciaFragment : Fragment() {
             override fun onResponse(call: Call<AmperagemResponse>, response: Response<AmperagemResponse>) {
                 if(response.isSuccessful){
                     amperagem = response.body()!!.valor
+                    potencia.text = (tensao * amperagem).roundToInt().toString() + "Watts"
                 }else {
                     Log.d("TAG", "onResponse: " + response.message())
+                    amperagem = 10f
                 }
             }
             override fun onFailure(call: Call<AmperagemResponse>, t: Throwable) {
                 Toast.makeText(context, t.message, Toast.LENGTH_SHORT).show()
+                potencia.text = "err"
             }
         })
     }

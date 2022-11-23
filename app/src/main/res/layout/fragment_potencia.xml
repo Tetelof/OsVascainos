@@ -29,7 +29,7 @@
         android:id="@+id/potencia_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="123456789"
+        android:text="Fetching data..."
         android:textSize="20sp"
         android:layout_toRightOf="@+id/potencia_txt"
         android:layout_below="@+id/currentUser"
