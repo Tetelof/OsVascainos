@@ -36,6 +36,9 @@ interface RetrofitService {
     @POST("api/cadastro/leitor-rfid")
     fun registerRfid(@Body id: Int) : Call<RegisterRfidResponse>
 
+    @POST("/api/criar-usuario")
+    fun registerUser(@Body user: RegisterUser) : Call<RegisterUserResponse>
+
 
     companion object {
         private var base_url: String = "http://192.168.3.157:6969"

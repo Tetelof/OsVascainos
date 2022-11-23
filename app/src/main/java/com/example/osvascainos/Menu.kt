@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.TextView
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -62,6 +63,9 @@ class Menu : AppCompatActivity() {
                 }
             }
         sp.registerOnSharedPreferenceChangeListener(prefListener)
+
+//        val userName: TextView = findViewById(R.id.user_name)
+//        userName.text = Data.user.nome
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
