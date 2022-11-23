@@ -12,7 +12,7 @@
             android:title="Sensor de gás" />
         <item
             android:id="@+id/nav_potencia"
-            android:title="Potencia" />
+            android:title="Potência" />
         <item
             android:id="@+id/nav_amperagem"
             android:title="Sensor de corrente" />
@@ -22,5 +22,8 @@
         <item
             android:id="@+id/nav_infrared"
             android:title="Sensor infravermelho" />
+        <item
+            android:id="@+id/nav_rfid"
+            android:title="Leitor RFID" />
     </group>
 </menu>

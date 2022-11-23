@@ -39,9 +39,16 @@
         android:name="com.example.osvascainos.ui.infrared.InfraredFragment"
         android:label="Sensor Infravermelho"
         tools:layout="@layout/fragment_infrared" />
+
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.example.osvascainos.ui.SettingsFragment"
-        android:label="SettingsFragment" />
+        android:label="Configurações" />
+
+    <fragment
+        android:id="@+id/nav_rfid"
+        android:name="com.example.osvascainos.ui.rfid.RfidFragment"
+        android:label="Leitor RFID"
+        tools:layout="@layout/fragment_rfid" />
 
 </navigation>

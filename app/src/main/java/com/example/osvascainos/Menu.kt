@@ -4,10 +4,8 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.TextView
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -46,7 +44,8 @@ class Menu : AppCompatActivity() {
                 R.id.nav_potencia,
                 R.id.nav_amperagem,
                 R.id.nav_tensao,
-                R.id.nav_infrared
+                R.id.nav_infrared,
+                R.id.nav_rfid
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

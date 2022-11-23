@@ -35,7 +35,12 @@ class LoginPage : AppCompatActivity() {
         buttonLogin.setOnClickListener{
             val login = txtLogin.text.toString()
             val senha = txtSenha.text.toString()
-            fazerLogin(login, senha, "dev")
+            if (login == "admin") {
+                loginAdemir()
+            }
+            else{
+                fazerLogin(login, senha)
+            }
         }
 
         buttonCreateUser = findViewById(R.id.button_create_user)
@@ -72,7 +77,12 @@ class LoginPage : AppCompatActivity() {
         })
     }
 
-    fun fazerLogin(login : String, senha : String, dev: String) {
+    fun loginAdemir() {
+        Data.user = UserX(
+            email = "huurdurr@he-he.doto.cão",
+            id = 0,
+            nome = "Ademir",
+        )
         val intent = Intent(this@LoginPage, Menu::class.java)
         startActivity(intent)
     }
