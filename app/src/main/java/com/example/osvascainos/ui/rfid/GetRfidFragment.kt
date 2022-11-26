@@ -11,16 +11,15 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.osvascainos.Data
 import com.example.osvascainos.retrofit.RetrofitService
-import com.example.osvascainos.databinding.FragmentRfidBinding
-import com.example.osvascainos.retrofit.CadastroRfid
-import com.example.osvascainos.retrofit.RegisterRfidResponse
+import com.example.osvascainos.databinding.FragmentGetRfidBinding
+import com.example.osvascainos.retrofit.RFIDResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class RfidFragment : Fragment() {
+class GetRfidFragment : Fragment() {
 
-    private var _binding: FragmentRfidBinding? = null
+    private var _binding: FragmentGetRfidBinding? = null
     private lateinit var registerButton: Button
     private lateinit var resultRfid: TextView
     // This property is only valid between onCreateView and
@@ -33,15 +32,15 @@ class RfidFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        _binding = FragmentRfidBinding.inflate(inflater, container, false)
+        _binding = FragmentGetRfidBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        resultRfid = binding.resultRfid
+        resultRfid = binding.resultGetRfid
         resultRfid.text = "Fetching data..."
 
-        registerButton = binding.buttonRegisterRfid
+        registerButton = binding.buttonReadRfid
         registerButton.setOnClickListener{
-            registerRfid()
+            testRfid()
         }
         return root
     }
@@ -51,21 +50,19 @@ class RfidFragment : Fragment() {
         _binding = null
     }
 
-    fun registerRfid(){
+    fun testRfid(){
         val retrofit = RetrofitService.getRetrofitInstance()
-        val post = retrofit.registerRfid(CadastroRfid(
-            usuarioId = Data.user.id
-        ))
+        val get = retrofit.getRfid(id=Data.user.id)
         val context = context
-        post.enqueue(object: Callback<RegisterRfidResponse> {
-            override fun onResponse(call: Call<RegisterRfidResponse>, response: Response<RegisterRfidResponse>) {
+        get.enqueue(object: Callback<RFIDResponse> {
+            override fun onResponse(call: Call<RFIDResponse>, response: Response<RFIDResponse>) {
                 if(response.isSuccessful){
-                    resultRfid.text = response.body()!!.cadastro.toString()
+                    resultRfid.text = response.body()!!.permitido.toString()
                 }else {
                     Log.d("TAG", "onResponse: " + response.message())
                 }
             }
-            override fun onFailure(call: Call<RegisterRfidResponse>, t: Throwable) {
+            override fun onFailure(call: Call<RFIDResponse>, t: Throwable) {
                 resultRfid.text = "err"
                 Toast.makeText(context, t.message, Toast.LENGTH_SHORT).show()
             }

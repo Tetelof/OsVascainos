@@ -15,16 +15,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         supportActionBar?.hide()
-        val sharedPrefs = getSharedPreferences("LoggedIn", Context.MODE_PRIVATE)
-        if (sharedPrefs.getBoolean("alreadyLogged", false)){
-            val home = Intent(this, Menu::class.java)
-            intent.putExtra("token", sharedPrefs.getString("token","defaultValue"))
-            finish()
-            startActivity(home)
-        }else {
-            val intent = Intent(this, LoginPage::class.java)
-            finish()
-            startActivity(intent)
-        }
+        val sp = PreferenceManager.getDefaultSharedPreferences(this)
+        RetrofitService.changeRetrofitBaseUrl(sp.getString("ip_rasp","http://127.0.0.1:6969")!!)
+        val intent = Intent(this, LoginPage::class.java)
+        finish()
+        startActivity(intent)
     }
 }

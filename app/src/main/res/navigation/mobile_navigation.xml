@@ -51,4 +51,10 @@
         android:label="Leitor RFID"
         tools:layout="@layout/fragment_rfid" />
 
+    <fragment
+        android:id="@+id/nav_get_rfid"
+        android:name="com.example.osvascainos.ui.rfid.GetRfidFragment"
+        android:label="Teste RFID"
+        tools:layout="@layout/fragment_get_rfid" />
+
 </navigation>

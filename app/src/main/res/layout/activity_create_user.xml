@@ -42,7 +42,7 @@
 
         <EditText
             android:id="@+id/register_email"
-            android:inputType="textPassword"
+            android:inputType="textEmailAddress"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_below="@+id/txt_email_header"
@@ -62,7 +62,6 @@
 
         <EditText
             android:id="@+id/register_nome"
-            android:inputType="textPassword"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_below="@+id/txt_nome_header"

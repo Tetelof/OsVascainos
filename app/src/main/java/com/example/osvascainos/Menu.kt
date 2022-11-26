@@ -45,7 +45,8 @@ class Menu : AppCompatActivity() {
                 R.id.nav_amperagem,
                 R.id.nav_tensao,
                 R.id.nav_infrared,
-                R.id.nav_rfid
+                R.id.nav_rfid,
+                R.id.nav_get_rfid
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

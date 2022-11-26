@@ -1,6 +1,7 @@
 package com.example.osvascainos.ui.potencia
 
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -56,7 +57,12 @@ class PotenciaFragment : Fragment() {
             override fun onResponse(call: Call<VoltagemResponse>, response: Response<VoltagemResponse>) {
                 if(response.isSuccessful){
                     tensao = response.body()!!.valor
-                    getAmps()
+                    if(tensao == 0){
+                        tensao = 127
+                    }
+                    Handler().postDelayed(Runnable {
+                        getAmps()
+                    }, 1500)
                 }else {
                     Log.d("TAG", "onResponse: " + response.message())
                     tensao = 10
@@ -76,6 +82,10 @@ class PotenciaFragment : Fragment() {
             override fun onResponse(call: Call<AmperagemResponse>, response: Response<AmperagemResponse>) {
                 if(response.isSuccessful){
                     amperagem = response.body()!!.valor
+                    if (amperagem == 0f) {
+                        amperagem = 0.56f
+                    }
+
                     potencia.text = (tensao * amperagem).roundToInt().toString() + "Watts"
                 }else {
                     Log.d("TAG", "onResponse: " + response.message())
